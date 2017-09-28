@@ -2,7 +2,7 @@ FROM ubuntu:17.04
 RUN apt update && apt upgrade -y
 
 # Install GCC 7
-RUN apt install software-properties-common python-software-properties make git -y
+RUN apt install software-properties-common python-software-properties make git libboost-python-dev -y
 RUN add-apt-repository ppa:ubuntu-toolchain-r/test -y
 RUN apt update && apt upgrade -y
 RUN apt install wget gcc-7 g++-7 -y
@@ -19,9 +19,9 @@ RUN rm -rf cmake-3.9.0
 
 # Install boost
 # RUN apt install libboost1.63-all-dev -y
-RUN wget http://dl.bintray.com/boostorg/release/1.65.0/source/boost_1_65_0.tar.gz
-RUN tar xzvf boost_1_65_0.tar.gz
-WORKDIR boost_1_65_0
+RUN wget https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz
+RUN tar xzvf boost_1_65_1.tar.gz
+WORKDIR boost_1_65_1
 RUN ./bootstrap.sh
 RUN ./b2 install
 
