@@ -27,7 +27,7 @@ RUN ./b2 install
 # Install openssl 1.1.0f
 RUN git clone https://github.com/openssl/openssl.git
 WORKDIR openssl
-git checkout OpenSSL_1_1_0f
+RUN git checkout OpenSSL_1_1_0f
 RUN ./config
 RUN make
 RUN make install
