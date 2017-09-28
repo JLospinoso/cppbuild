@@ -18,8 +18,14 @@ WORKDIR /
 RUN rm -rf cmake-3.9.0
 
 # Install boost
-RUN apt install libboost1.63-all-dev -y
+# RUN apt install libboost1.63-all-dev -y
+RUN wget http://dl.bintray.com/boostorg/release/1.65.0/source/boost_1_65_0.tar.gz
+RUN tar xzvf boost_1_65_0.tar.gz
+WORKDIR boost_1_65_0
+RUN ./bootstrap
+RUN ./b2 install
 
+# Install openssl
 RUN git clone https://github.com/openssl/openssl.git
 WORKDIR openssl
 RUN ./config
