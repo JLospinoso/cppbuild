@@ -23,6 +23,8 @@ RUN tar xzvf boost_1_65_1.tar.gz
 WORKDIR boost_1_65_1
 RUN ./bootstrap.sh
 RUN ./b2 install
+WORKDIR /
+RUN rm -rf boost_1_65_1
 
 # Install openssl 1.1.0f
 RUN git clone https://github.com/openssl/openssl.git
