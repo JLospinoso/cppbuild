@@ -22,7 +22,7 @@ RUN rm -rf cmake-3.9.0
 RUN wget http://dl.bintray.com/boostorg/release/1.65.0/source/boost_1_65_0.tar.gz
 RUN tar xzvf boost_1_65_0.tar.gz
 WORKDIR boost_1_65_0
-RUN ./bootstrap
+RUN ./bootstrap.sh
 RUN ./b2 install
 
 # Install openssl
