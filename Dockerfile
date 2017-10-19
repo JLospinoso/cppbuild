@@ -19,7 +19,7 @@ RUN rm -rf cmake-3.9.2
 RUN wget https://dl.bintray.com/boostorg/release/1.65.1/source/boost_1_65_1.tar.gz && \
     tar xzvf boost_1_65_1.tar.gz
 WORKDIR boost_1_65_1
-RUN ./bootstrap.sh &&
+RUN ./bootstrap.sh && \
     ./b2 install
 WORKDIR /
 RUN rm -rf boost_1_65_1
@@ -28,8 +28,8 @@ RUN rm -rf boost_1_65_1
 RUN git clone https://github.com/openssl/openssl.git
 WORKDIR openssl
 RUN git checkout OpenSSL_1_1_0f && \
-    ./config
-    make
+    ./config && \
+    make && \
     make install
 WORKDIR /
 RUN rm -rf openssl
