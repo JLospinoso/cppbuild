@@ -7,13 +7,13 @@ RUN apt update && apt upgrade -y && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 10 && \
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10
 
-# Install cmake v3.10.1
+# Install cmake v3.11.0-rc2
 RUN wget https://cmake.org/files/v3.11/cmake-3.11.0-rc2.tar.gz && \
     tar xzvf cmake-3.11.0-rc2.tar.gz
-WORKDIR cmake-cmake-3.11.0-rc2
+WORKDIR cmake-3.11.0-rc2
 RUN ./bootstrap && make && make install
 WORKDIR /
-RUN rm -rf cmake-cmake-3.11.0-rc2
+RUN rm -rf cmake-3.11.0-rc2
 
 # Install boost v1.66.0
 RUN wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz && \
