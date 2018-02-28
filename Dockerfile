@@ -1,4 +1,4 @@
-FROM ubuntu:17.04
+FROM ubuntu:17.10
 RUN apt update && apt upgrade -y && \
     apt install software-properties-common python-software-properties make git libboost-python-dev -y && \
     add-apt-repository ppa:ubuntu-toolchain-r/test -y && \
@@ -8,12 +8,12 @@ RUN apt update && apt upgrade -y && \
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 10
 
 # Install cmake v3.10.1
-RUN wget https://cmake.org/files/v3.10/cmake-3.10.1.tar.gz && \
-    tar xzvf cmake-3.10.1.tar.gz
-WORKDIR cmake-3.10.1
+RUN wget https://cmake.org/files/v3.11/cmake-3.11.0-rc2.tar.gz && \
+    tar xzvf cmake-3.11.0-rc2.tar.gz
+WORKDIR cmake-cmake-3.11.0-rc2
 RUN ./bootstrap && make && make install
 WORKDIR /
-RUN rm -rf cmake-3.10.1
+RUN rm -rf cmake-cmake-3.11.0-rc2
 
 # Install boost v1.66.0
 RUN wget https://dl.bintray.com/boostorg/release/1.66.0/source/boost_1_66_0.tar.gz && \
@@ -27,7 +27,7 @@ RUN rm -rf boost_1_66_0
 # Install openssl 1.1.0f
 RUN git clone https://github.com/openssl/openssl.git
 WORKDIR openssl
-RUN git checkout OpenSSL_1_1_0f && \
+RUN git checkout OpenSSL_1_1_0g && \
     ./config && \
     make && \
     make install
