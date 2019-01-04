@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
 RUN apt update && apt upgrade -y && \
-    apt install software-properties-common make git && \
+    apt install software-properties-common make git -y && \
     add-apt-repository ppa:ubuntu-toolchain-r/test -y && \
     apt update && apt upgrade -y && \
     apt install wget gcc-8 g++-8 -y && \
