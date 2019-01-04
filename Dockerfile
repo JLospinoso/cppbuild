@@ -8,7 +8,7 @@ RUN apt update && apt upgrade -y && \
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 10
 
 # Install cmake v3.13.2
-RUN wget https://cmake.org/files/v3.13/cmake-3.13.3.tar.gz && \
+RUN wget https://cmake.org/files/v3.13/cmake-3.13.2.tar.gz && \
     tar xzvf cmake-3.13.2.tar.gz
 WORKDIR cmake-3.13.2
 RUN ./bootstrap && make && make install
