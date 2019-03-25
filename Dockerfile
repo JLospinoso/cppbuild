@@ -7,17 +7,17 @@ RUN apt update && apt upgrade -y && \
     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 10 && \
     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 10
 
-# Install cmake v3.13.2
-RUN wget https://cmake.org/files/v3.13/cmake-3.13.2.tar.gz && \
-    tar xzvf cmake-3.13.2.tar.gz
-WORKDIR cmake-3.13.2
-RUN ./bootstrap && make && make install
-WORKDIR /
-RUN rm -rf cmake-3.13.2
+  # Install cmake v3.14.0
+  RUN wget https://cmake.org/files/v3.14/cmake-3.14.0.tar.gz && \
+      tar xzvf cmake-3.14.0.tar.gz && rm cmake-3.14.0.tar.gz
+  WORKDIR cmake-3.14.0
+  RUN ./bootstrap && make && make install
+  WORKDIR /
+  RUN rm -rf cmake-3.14.0
 
 # Install boost v1.69.0
 RUN wget https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.gz && \
-    tar xzvf boost_1_69_0.tar.gz
+    tar xzvf boost_1_69_0.tar.gz && rm boost_1_69_0.tar.gz
 WORKDIR boost_1_69_0
 RUN ./bootstrap.sh && \
     ./b2 install
