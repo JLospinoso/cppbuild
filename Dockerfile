@@ -1,28 +1,9 @@
 FROM ubuntu:19.04
 RUN apt update && apt upgrade -y && \
-    apt install software-properties-common make git wget build-essential -y
+    apt install software-properties-common make git wget build-essential gcc-8 -y
 
-# Install gcc 9.1.0
-RUN wget -q https://ftpmirror.gnu.org/gcc/gcc-9.1.0/gcc-9.1.0.tar.gz
-RUN tar xf gcc-9.1.0.tar.gz
-WORKDIR gcc-9.1.0
-RUN contrib/download_prerequisites
-RUN mkdir build
-WORKDIR build
-RUN ../configure -v --build=x86_64-linux-gnu --host=x86_64-linux-gnu --target=x86_64-linux-gnu \
-                    --prefix=/usr/local/gcc-9.1 --enable-checking=release --enable-languages=c,c++,fortran \
-                    --disable-multilib --program-suffix=-9.1
-RUN make
-RUN make install-strip
-WORKDIR /
-RUN rm -rf gcc-9.1.0 gcc-9.1.0.tar.gz
-
-RUN update-alternatives --install /usr/bin/g++ g++ /usr/local/gcc-9.1/bin/g++-9.1 10 && \
-    update-alternatives --install /usr/bin/gcc gcc /usr/local/gcc-9.1/bin/gcc-9.1 10 && \
-    update-alternatives --install /usr/bin/cc cc /usr/bin/gcc 30  && \
-    update-alternatives --set cc /usr/bin/gcc  && \
-    update-alternatives --install /usr/bin/c++ c++ /usr/bin/g++ 30 && \
-    update-alternatives --set c++ /usr/bin/g++
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 10 && \
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 10
 
 # Install cmake v3.14.4
 RUN wget -q https://cmake.org/files/v3.14/cmake-3.14.4.tar.gz && \
